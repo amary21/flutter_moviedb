@@ -19,7 +19,7 @@ class DetailMovie extends StatelessWidget {
                 Image.network('$urlImg${results.backdropPath}'),
                 SafeArea(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       IconButton(
                           icon: Icon(
@@ -28,7 +28,8 @@ class DetailMovie extends StatelessWidget {
                           ),
                           onPressed: () {
                             Navigator.pop(context);
-                          })
+                          }),
+                      FavoriteButton()
                     ],
                   ),
                 )
@@ -107,5 +108,28 @@ class DetailMovie extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class FavoriteButton extends StatefulWidget {
+  @override
+  _FavoriteButtonState createState() => _FavoriteButtonState();
+}
+
+class _FavoriteButtonState extends State<FavoriteButton> {
+  bool isFavorite = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+        icon: Icon(
+          isFavorite ? Icons.favorite : Icons.favorite_border,
+          color: Colors.white,
+        ),
+        onPressed: () {
+          setState(() {
+            isFavorite = !isFavorite;
+          });
+        });
   }
 }
